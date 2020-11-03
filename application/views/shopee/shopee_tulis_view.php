@@ -476,7 +476,7 @@ else if ($hm != '' and $fs =='') {
 Kode : ".$kode."
 Ukuran : ".$size."
 Warna : (Sesuai Gambar)
-Kualitas : Premium / Super (Best Quality)
+Kualitas : Premium / Super (Best Quality)xx
 .
 ".$caphemat."
 .
