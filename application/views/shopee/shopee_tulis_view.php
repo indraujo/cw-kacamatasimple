@@ -309,11 +309,11 @@ Be Your Self dan #BeraniBeda";
 //Kelengkapan produk
 $koleksi = array(
 '0' =>"Follow kacamatasimple dan dapatkan PROMO khusus kamu!",
-'1' =>"✔️ Follow @kacamatasimple.id untuk dapatkan HARGA PROMO.
-✔️ Follow @galerikacamatasimple.id untuk melihat-lihat koleksi kami.",
+'1' =>"Follow @kacamatasimple.id untuk dapatkan HARGA PROMO.
+Follow @galerikacamatasimple.id untuk melihat-lihat koleksi kami.",
 '2' =>
-"✔️ Follow @kacamatasimple.id untuk dapatkan HARGA PROMO.
-✔️ Follow @galerikacamatasimple.id untuk melihat-lihat koleksi kami.");
+"Follow @kacamatasimple.id untuk dapatkan HARGA PROMO.
+Follow @galerikacamatasimple.id untuk melihat-lihat koleksi kami.");
 
 $koleksi = $koleksi[$akun];
 //Call To Action
@@ -328,16 +328,19 @@ $calltoaction = "Tunggu apa lagi? Yuk order sebelum kehabisan karena stok premiu
 $fastorder ="Lengkapi dengan lensa anti radiasi berkualitas untuk menjaga mata kamu!!!
 Antiradiasi (biasa)
 Melindungi mata kamu dari paparan sinar UV
+https://shopee.co.id/LENSA-KACAMATA-PRIA-WANITA-ANTI-RADIASI-STANDAR-CRMC-i.82021038.4660918669
 
 Blueray
 Melindungi mata kamu dari sinar radiasi hingga layar gadget (HP, Laptop, TV, dsb)
+https://shopee.co.id/LENSA-KACAMATA-PRIA-WANITA-ANTI-RADIASI-BLUERAY-i.82021038.4460921936
 
 Photocromic
 Berubah warna ketika terkena radiasi sinar UV dari cahaya matahari sehingga bisa membuat relaks mata kamu saat berkegiatan diluar
+https://shopee.co.id/LENSA-KACAMATA-PRIA-WANITA-ANTI-RADIASI-PHOTOCROMIC-i.82021038.3261085047
 
 Essilor
 Dengan double protector dapat melindungi mata kamu dari sinar UV dan pantulan cahaya jahat lainnya yang dapat merusak mata kamu satu-satunya
-";
+https://shopee.co.id/LENSA-KACAMATA-PRIA-WANITA-ANTI-RADIASI-ESSILOR-i.82021038.6860916835";
 
 //NB
 $nb = "Catatan!!!
