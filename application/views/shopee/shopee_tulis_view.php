@@ -211,11 +211,11 @@ $fs=strpos($output,"full set");
 if ($fs !== FALSE){
 	//echo "Ketemu fullset = ".$fs;
 	$posisifs = $fs;
-	$harga_fs = substr($output, ($posisifs+8),6);
+	$harga_fs = substr($output, ($posisifs+8),7);
 	$harga_fs_update = $harga_fs + 15000;
 	echo "harga fullset = $harga_fs ->$harga_fs_update </br>";
 
-	$capfullset = "PAKET FULLSET
+	$capfullset = "- PAKET FULLSET
 FREE 
 - Box 
 - Case 
@@ -237,9 +237,9 @@ if ($hm !== FALSE){
 	$harga_hm_update = $harga_hm + 15000;
 	echo "harga hemat = ".$harga_hm."-> ".$harga_hm_update."</br>";
 
-	$caphemat = str_replace($hm, number_format($harga_hm_update,0,",",".")." - Paket Hemat
-✔️ FREE Case dan Lap Pembersih.
-✔️ FREE Packing Bubble Wrap.", $hm);
+	$caphemat = " - Paket Hemat
+- FREE Case dan Lap Pembersih.
+- FREE Packing Bubble Wrap.";
 
 }
 else {
@@ -326,6 +326,7 @@ $calltoaction = "Tunggu apa lagi? Yuk order sebelum kehabisan karena stok premiu
 
 //Kemudahan bertransaksi
 $fastorder ="Lengkapi dengan lensa anti radiasi berkualitas untuk menjaga mata kamu!!!
+Cek Toko Sekarang!!!
 Antiradiasi (biasa)
 Melindungi mata kamu dari paparan sinar UV
 
@@ -341,6 +342,7 @@ Dengan double protector dapat melindungi mata kamu dari sinar UV dan pantulan ca
 
 //NB
 $nb = "Catatan!!!
+- Wajib tulis WARNA di keterangan, jika tidak kami kirim RANDOM
 - Terima Pembuatan Lensa -/+/silinder (CRMC / Progresif / Photochromic / Bluray / Essilor)
 - No Booking Order
 - Siapa CEPAT dia DAPAT!
