@@ -7,6 +7,7 @@
 		<ul class="nav menu">
 			<li><a href="<?php echo base_url()."main/"; ?>"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
 			<li><a href="<?php echo base_url()."main/merk"; ?>"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"/></use></svg>Merk</a></li>
+			<li><a href="<?php echo base_url()."main/product"; ?>"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"/></use></svg>Product</a></li>
 			<li class="parent ">
 				<a href="#">
 					<span data-toggle="collapse" href="#sub-item-1"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg></span> Format - Copywriting 
@@ -64,6 +65,11 @@
 					<li>
 						<a class="" href="<?php echo base_url("main/instagram"); ?>">
 							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Tulis
+						</a>
+					</li>
+					<li>
+						<a class="" href="<?php echo base_url("main/instagramhijab"); ?>">
+							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Tulis Hijab
 						</a>
 					</li>
 					<li>

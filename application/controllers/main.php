@@ -28,6 +28,7 @@ class Main extends CI_Controller {
 		}
 		$this->load->helper('url');
 		$this->load->model('merk_model');
+		$this->load->model('product_model');
 		$this->load->model('headline_model');
 		$this->load->model('alasan_model');
 		$this->load->model('bonus_model');
@@ -57,14 +58,14 @@ class Main extends CI_Controller {
 			$level_akun = 0;
 		}
 		
-		$data['merk'] = $this->merk_model->get_data()->result();
-		$data['hd'] = $this->headline_model->get_data()->result();
-		$data['al'] = $this->alasan_model->get_data()->result();
-		$data['bn'] = $this->bonus_model->get_data()->result();
+		$data['merk'] 	= $this->merk_model->get_data()->result();
+		$data['hd'] 	= $this->headline_model->get_data()->result();
+		$data['al'] 	= $this->alasan_model->get_data()->result();
+		$data['bn'] 	= $this->bonus_model->get_data()->result();
 		
-		$data['call'] = $this->calltoaction_model->get_data()->result();
+		$data['call'] 			= $this->calltoaction_model->get_data()->result();
 		$where['level_hashtag'] = $level_akun;
-		$data['hashtag'] = $this->hashtag_model->select($where)->result();
+		$data['hashtag'] 		= $this->hashtag_model->select($where)->result();
 		$this->load->view('main/navbar_view.php');
 		$this->load->view('main/sidebar_view.php');
 		$this->load->view('tulis_view.php',$data);
@@ -77,6 +78,14 @@ class Main extends CI_Controller {
 		$this->load->view('main/navbar_view.php');
 		$this->load->view('main/sidebar_view.php');
 		$this->load->view('merk_view.php',$data);
+	}
+
+	public function product(){
+		$data['product'] = $this->product_model->get_data()->result();
+		
+		$this->load->view('main/navbar_view.php');
+		$this->load->view('main/sidebar_view.php');
+		$this->load->view('product_view.php',$data);
 	}
 
 	public function instagram()
@@ -103,6 +112,34 @@ class Main extends CI_Controller {
 		$this->load->view('main/navbar_view.php');
 		$this->load->view('main/sidebar_view.php');
 		$this->load->view('instagram/instagram_tulis_view.php',$data);
+		
+	}
+
+	public function instagramhijab()
+	{	
+		//error_reporting(0);
+
+		//$rows = $this->db->query("SELECT * FROM admin where username_admin='".$this->session->userdata('nama')."'")->row_array();
+		if (isset($_POST['akun']))
+		{
+			$level_akun = $_POST['akun'];
+		}
+		else {
+			$level_akun = 0;
+		}
+		
+		$data['merk'] 	= $this->merk_model->get_data()->result();
+		$where['hastag_product'] = "hijab";
+		$whereheadline['headline_product'] = "hijab";
+		$data['hd'] 	= $this->headline_model->select($whereheadline)->result();
+		$data['al'] 	= $this->alasan_model->get_data()->result();
+		$data['bn'] 	= $this->bonus_model->get_data()->result();
+		
+		$data['call'] = $this->calltoaction_model->get_data()->result();
+		$data['hashtag'] = $this->hashtag_model->select($where)->result();
+		$this->load->view('main/navbar_view.php');
+		$this->load->view('main/sidebar_view.php');
+		$this->load->view('instagram/instagramhijab_tulis_view.php',$data);
 		
 	}
 

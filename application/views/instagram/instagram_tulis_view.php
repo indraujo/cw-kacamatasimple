@@ -206,12 +206,26 @@ if ($bs !== FALSE){
 ";
 }
 
+// get size
+$sizeposition=strpos($output,"size");
+$size = substr($output,$sizeposition+5, 9);
+//echo "posisi size = > ".$size;
+
+
 //mencari keberadaan paket
-$fs=strpos($output,"fullset");
+$fs=strpos($output,"full set");
+$hm=strpos($output,"hemat");
+if ($sizeposition != ""){
+	$title = $sizeposition - $hm;
+}
+else{
+	$title = 6;
+}
+
 if ($fs !== FALSE){
 	//echo "Ketemu fullset = ".$fs;
 	$posisifs = $fs;
-	$harga_fs = substr($output, ($posisifs+8),6);
+	$harga_fs = substr($output, ($posisifs+8),7);
 	$harga_fs_update = $harga_fs + 15000;
 	echo "harga fullset = $harga_fs ->$harga_fs_update </br>";
 
@@ -225,11 +239,10 @@ else {
 	$posisifs = 1000;
 }
 
-$hm=strpos($output,"hemat");
 if ($hm !== FALSE){
 	//echo "Ketemu hemat = ".$hm;
 	$posisihm = $hm;
-	$harga_hm = substr($output, ($posisihm+6),6);
+	$harga_hm = substr($output, ($posisihm+6),$title);
 	$harga_hm_update = $harga_hm + 15000;
 	echo "harga hemat = ".$harga_hm."-> ".$harga_hm_update."</br>";
 
@@ -243,23 +256,58 @@ else {
 	$posisihm = 1000;
 }
 
+if($hm == ""){
+	if($ss=strpos($output,"00000")!=""){
+		//echo "posisi -> ".$ss;
+		$ss=strpos($output,"00000");
+		$posisihm = $ss-1;
+		//echo $posisihm;
+	}
+	else{
+		$ss=strpos($output,"000");
+		$posisihm = $ss-3;
+		
+	}
+	
+	$harga_hm = substr($output, ($posisihm),$title);
+	$harga_hm_update = $harga_hm + 15000;
+	echo "harga hemat = ".$harga_hm."-> ".$harga_hm_update."</br>";
+
+	$caphemat = str_replace($ss, number_format($harga_hm_update,0,",",".")." - Paket Hemat
+✔️ FREE Case dan Lap Pembersih.
+✔️ FREE Packing Bubble Wrap.", $ss);
+}
 
 if ($posisifs < $posisihm) {
 	$posisi = $posisifs;
 }
 else {
 	$posisi = $posisihm;
+	//echo "posisi hemat = ".$posisihm;
 }
 
 //kode produk
-$kode = substr($output, 0,$posisi);
-
-$array_kode = explode(" ", $kode);
-foreach ($array_kode as $ak) {
-	$aku[] = ucfirst($ak);
-	//echo $aku."</br>";
+if($sizeposition != ""){
+	$kode = substr($output, 0,$sizeposition);
+	//echo "Kode = > ".$kode." || ";
+	$array_kode = explode(" ", $kode);
+	foreach ($array_kode as $ak) {
+		$aku[] = ucfirst($ak);
+		//echo $aku."</br>";
+	}
+	$kode = implode(" ", $aku);
 }
-$kode = implode(" ", $aku);
+else{
+	$kode = substr($output, 0,$posisi);
+	//echo "Kode = > ".$kode." || ";
+	$array_kode = explode(" ", $kode);
+	foreach ($array_kode as $ak) {
+		$aku[] = ucfirst($ak);
+		//echo $aku."</br>";
+	}
+	$kode = implode(" ", $aku);
+}
+
 
 //$kode = ucfirst($kode);
 /*echo "</br>Kode : ".$kode." -> #KS_".$ks."</br>";
@@ -268,7 +316,7 @@ echo "<textarea id='kode' rows=1 cols=40>".$kode."</textarea><button class='butt
 
 //Alasan
 $alasan = "📛 Mengapa order di kacamatasimple.id?
-✔️ Tersedia Banyak koleksi dari brand ternama yang pastinya keren dan kamu banget!
+✔️ Banyak koleksi yang keren dan pasti kamu banget!
 ✔️ Promo khusus setiap bulannya untuk kamu!
 ✔️ FREE Retur! Jika yang kamu dapatkan tidak sesuai dengan gambar";
 //foreach ($al as $a) {
@@ -280,7 +328,7 @@ $alasan = "📛 Mengapa order di kacamatasimple.id?
 //	$bonus = $b->bonus;
 //}
 $bonus = "📛 AWAS! 📛
-Jangan sampai kamu ketinggalan PROMO TERBATAS nya yah.
+Jangan sampai kamu ketinggalan PROMO KHUSUS setiap BULAN nya yah.
 Be Your Self dan #BeraniBeda";
 
 //Kelengkapan produk
@@ -300,9 +348,7 @@ foreach ($call as $c) {
 }
 */
 $calltoaction = "📛 Tunggu apa lagi? Yuk order sebelum kehabisan
-WhatsApp : 0811-1049-307.
-Line : @kacamatasimple (pakai @ ya).
-www.kacamatasimple.com";
+WhatsApp : 0811-1049-307";
 
 //Kemudahan bertransaksi
 $fastorder ="🔥 FAST ORDER 🔥
@@ -314,6 +360,11 @@ $nb = "📌 Catatan 📌
 ✔️ Terima Pembuatan Lensa -/+/silinder (CRMC / Progresif / Photochromic / Bluray / Essilor)
 ✔️ No Booking Order
 ✔️ Siapa CEPAT dia DAPAT!
+✔️ Verifikasi order sebelum jam 3 Sore akan diproses kilat dihari yang sama
+✔️ Verifikasi order setelah kam 3 Sore akan diproses dihari selanjutnya
+✔️ Verifikasi order sabtu  sebelum jam 12 akan diproses dihari yang sama
+✔️ Verifikasi order di sabtu setelah jam 12 / hari minggu / tanggal merah akan di proses di senin atau saat buka nya expedisi
+#KacamataSimple"
 #KacamataSimple";
 ?>
 		<div class="row">
@@ -466,7 +517,58 @@ if (isset($tag[$ii])) {
 	echo "</table>";
 }	
 
+else if ($hm == '' and $fs =='') {
+	if($sizeposition!=""){
+		class thingie{
+		public function showsize($size){
+			return 'Size : '.$size;
+		}}
+		$t = new thingie();
+		
+	}
+	echo "<table data-toggle='table'  >";
+	for ($i=0; $i < $jml_caption; $i++) { 
+		$random_headline = rand(0,$jml_headline-1);
+		echo "<tr><td>".$i."</td><td> <textarea id='hashtag_".$i."' rows=5 cols=40>
+".$bs.$headline[array_rand($headline)]."
+.
+Kode : ".$kode."
+{$t->showsize($size)}
+Warna : (Sesuai Gambar)
+Kualitas : Premium / Super (Best Quality)
+.
+📛 Harga : 
+".$caphemat."
+.
+".$alasan."
+.
+".$bonus."
+.
+".$koleksi."
+.
+📛 ".$calltoaction."
+.
+".$fastorder."
+.
+".$nb;
+if ($akun !== "0") 
+{
+echo "
+.
+";
+		$c = (($i*25)+1);
+		for ($ii=$c; $ii < ($c+25); $ii++) { 
+if (isset($tag[$ii])) {
+	echo $tag[$ii]." ";
+}
+		}
+	}
+		echo "</textarea></td><td>   <button class='btn btn-primary' id='copy-button' data-clipboard-target='#hashtag_".$i."''>Copy</button>
 
+		</td></tr>";
+	}
+	echo "</table>";
+}	
 
 	
 
